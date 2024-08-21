@@ -10,7 +10,7 @@ formLogin.addEventListener('submit' , function (event){
 
 
 function logar() {
-    fetch('http://localhost:8080/employees/auth', {
+    fetch('/employees/auth', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -27,14 +27,20 @@ function logar() {
         if (data) {
             console.log('Login bem-sucedido');
             formLogin.reset();
-            fetch('http://localhost:8080/session/session-info')
-                .then(response => response.json())
+            fetch('/session/session-info')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
                 .then(data => {
                     console.log('Session Data:', data);
                 })
                 .catch(error => {
                     console.error('Erro ao obter informações da sessão:', error);
                 });
+
 
         } else {
             console.log('Autenticação falhou');

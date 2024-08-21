@@ -32,9 +32,9 @@ public class Employee {
 
     @OneToMany
     @JoinTable(
-            name = "employee_clients",
-            joinColumns = @JoinColumn(name = "employee_id"),
-            inverseJoinColumns = @JoinColumn(name = "client_id")
+            name = "funcionarios_clientes",
+            joinColumns = @JoinColumn(name = "funcionario_id"),
+            inverseJoinColumns = @JoinColumn(name = "cliente_id")
     )
     private List<Client> clients;
 
