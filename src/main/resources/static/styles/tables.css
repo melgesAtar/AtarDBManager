@@ -1,0 +1,28 @@
+.header{
+    display: flex;
+    background: var(--c2);
+    padding: 30px;
+    justify-content: space-between;
+
+}
+
+.header-left{
+    width: 400px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-left img{
+    width: 100px;
+}
+
+
+.header-right{
+    width: 400px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}

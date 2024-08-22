@@ -1,5 +1,6 @@
 package br.com.atardigital.AtarDBManager.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -13,10 +14,7 @@ public class Client {
     Integer id;
     @Column(name = "nome" , length = 60)
     String name;
-    @Column(name = "email", length = 60)
-    String email;
-    @Column(name = "senha", columnDefinition = "TEXT")
-    String password;
+
     @Column(name = "cidade")
     String city;
     @Column(name = "usuario_facebook")
@@ -24,5 +22,35 @@ public class Client {
     @Column(name = "instagram_User")
     String nameUserInstagram;
 
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getNameUserFacebook() {
+        return nameUserFacebook;
+    }
+
+    public void setNameUserFacebook(String nameUserFacebook) {
+        this.nameUserFacebook = nameUserFacebook;
+    }
 }

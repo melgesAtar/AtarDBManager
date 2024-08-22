@@ -10,15 +10,15 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "funcionario_id")
-    Integer id;
+    private Integer id;
     @Column(name = "nome" , length = 60)
-    String name;
+    private String name;
     @Column(name = "email", length = 60)
-    String email;
+    private String email;
     @Column(name = "senha", columnDefinition = "TEXT")
-    String password;
+    private String password;
     @Column(name = "administrador")
-    Boolean admin;
+    private Boolean admin;
 
     Boolean isAuthenticated;
 
@@ -30,7 +30,7 @@ public class Employee {
         return isAuthenticated;
     }
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "funcionarios_clientes",
             joinColumns = @JoinColumn(name = "funcionario_id"),
@@ -60,5 +60,15 @@ public class Employee {
 
     public String getPassword() {
         return password;
+    }
+
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", admin=" + admin +
+                ", isAuthenticated=" + isAuthenticated +
+                '}';
     }
 }

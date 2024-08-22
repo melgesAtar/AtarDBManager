@@ -1,13 +1,17 @@
 package br.com.atardigital.AtarDBManager.controller;
 
 import jakarta.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
-
+@CrossOrigin(origins = "http://localhost:8080")
+@RestController
 @RequestMapping("/session")
 public class SessionController {
 
@@ -20,6 +24,7 @@ public class SessionController {
             String attributeName = attributeNames.nextElement();
             Object attributeValue = session.getAttribute(attributeName);
             sessionData.put(attributeName, attributeValue);
+
         }
         return sessionData;
     }
