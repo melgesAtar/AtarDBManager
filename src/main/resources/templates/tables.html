@@ -5,6 +5,8 @@
     <title>Gerenciar tabelas</title>
     <link rel="stylesheet" href="/styles/style.css">
     <script defer src="/scripts/completeName.js"></script>
+    <script defer src="/scripts/selectTable.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
     <header class="header">
@@ -12,11 +14,62 @@
             <img src="./assets/logo-atar.svg" alt="Logo Atar Digital">
             <h1 class="title__text">Gerenciador de tabelas</h1>
         </div>
+
         <div class="header-right">
-            <span>Olá, </span>
-            <span class="userSpan"></span>
+            <i class="fa-solid fa-user title__text" style="margin-right:20px "></i>
+            <span class="title__text">Olá, <span id="userSpan" class="title__text"></span></span>
         </div>
+
+
     </header>
+
+    <section class="tables">
+        <div class="table" data-table="clients">
+            <i class="fa-regular fa-user title__text"></i>
+            <h2 class="title__text">Clientes</h2>
+        </div>
+
+        <div class="table" data-table="employees">
+            <i class="fa-regular fa-user title__text "></i>
+            <h2 class="title__text">Funcionários</h2>
+        </div>
+
+        <div class="table" data-table="employee_clients">
+            <i class="fa-regular fa-user title__text "><i class="fa-regular fa-user title__text "></i></i>
+            <h2 class="title__text">Funcionário/Cliente</h2>
+        </div>
+
+        <div class="table" data-table="facebook_accounts">
+            <i class="fa-brands fa-facebook title__text"></i>
+            <h2 class="title__text">Contas Facebook</h2>
+        </div>
+
+        <div class="table" data-table="instagram_accounts">
+            <i class="fa-brands fa-instagram title__text"></i>
+            <h2 class="title__text">Contas Instagram</h2>
+        </div>
+
+        <div class="table" data-table="niches">
+            <i class="fa-solid fa-list title__text"></i>
+            <h2 class="title__text">Nichos</h2>
+        </div>
+
+        <div class="table" data-table="activities">
+            <i class="fa-solid fa-chart-line title__text"></i>
+            <h2 class="title__text">Atividades</h2>
+        </div>
+
+        <div class="table" data-table="robot_instagram_activities">
+            <i class="fa-solid fa-robot title__text"></i>
+            <h2 class="title__text">Atividades Robô Instagram</h2>
+        </div>
+
+        <div class="table" data-table="observations">
+            <i class="fa-regular fa-clipboard title__text"></i>
+            <h2 class="title__text">Observações</h2>
+        </div>
+
+    </section>
 </body>
 </html>
 

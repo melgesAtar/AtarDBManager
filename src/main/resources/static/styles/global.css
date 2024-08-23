@@ -26,7 +26,9 @@ html {
   text-size-adjust: none;
 }
 
-
+span{
+    display: inline-block;
+}
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
 ul[role='list'],
@@ -47,6 +49,7 @@ h1, h2, h3, h4,
 button, input, label {
   line-height: 1.1;
 }
+
 
 /* Balance text wrapping on headings */
 h1, h2,

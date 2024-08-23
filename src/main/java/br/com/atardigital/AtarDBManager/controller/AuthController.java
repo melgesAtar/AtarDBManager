@@ -26,6 +26,7 @@ public class AuthController {
             Employee employee = employeeOpt.get();
             if (employee.getPassword().equals(password)) {
                 session.setAttribute("username", employee.getEmail());
+                session.setAttribute("name", employee.getName());
                 session.setAttribute("isAuthenticated", true);
                 session.setAttribute("userId", employee.getID());
                 session.setAttribute("isAdmin", employee.getAdmin());

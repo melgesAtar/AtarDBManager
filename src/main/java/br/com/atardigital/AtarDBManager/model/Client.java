@@ -1,9 +1,8 @@
 package br.com.atardigital.AtarDBManager.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
-import java.util.List;
+
 
 @Entity
 @Table(name ="clientes")
@@ -11,16 +10,16 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cliente_id")
-    Integer id;
+    private Integer id;
     @Column(name = "nome" , length = 60)
-    String name;
+    private String name;
 
     @Column(name = "cidade")
-    String city;
+    private String city;
     @Column(name = "usuario_facebook")
-    String nameUserFacebook;
+    private String nameUserFacebook;
     @Column(name = "instagram_User")
-    String nameUserInstagram;
+    private String nameUserInstagram;
 
     public Integer getId() {
         return id;

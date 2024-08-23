@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Atividades</title>
+    <script defer src="/scripts/activitiesTable.js"></script>
+</head>
+<body>
+<h1>Editar Atividades</h1>
+<button id="addRecordBtn">Adicionar Nova Atividade</button>
+<table id="dataTable">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>ID Funcionário</th>
+        <th>ID Cliente</th>
+        <th>Nome</th>
+        <th>Data</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- As linhas da tabela serão preenchidas dinamicamente -->
+    </tbody>
+</table>
+
+<!-- Formulário para Adicionar/Editar -->
+<div id="formContainer" style="display:none;">
+    <h2 id="formTitle">Adicionar Atividade</h2>
+    <form id="recordForm">
+        <input type="hidden" id="recordId">
+        <label for="name">Nome:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="date">Data:</label>
+        <input type="date" id="date" name="date" required>
+        <button type="submit">Salvar</button>
+    </form>
+</div>
+
+</body>
+</html>

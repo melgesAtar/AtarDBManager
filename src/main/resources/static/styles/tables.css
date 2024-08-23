@@ -1,9 +1,9 @@
 .header{
     display: flex;
+    flex-wrap : wrap;
     background: var(--c2);
     padding: 30px;
     justify-content: space-between;
-
 }
 
 .header-left{
@@ -23,6 +23,33 @@
     width: 400px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
+}
+
+.tables{
+    display: flex;
+    justify-content:center;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding: 60px 30px;
+}
+
+.table{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width:300px;
+    height: 300px;
+    background: var(--c5);
+    color: #FFFFFF;
+    border-radius: 8px;
+}
+
+.table:hover{
+    cursor: pointer;
+    background-color: var(--c3);
+    color: black;
+    transition: 500ms linear;
 }

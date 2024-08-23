@@ -1,19 +1,19 @@
-function getCookie(name) {
-            const value = `; ${document.cookie}`;
-            const parts = value.split(`; ${name}=`);
-            if (parts.length === 2) return parts.pop().split(';').shift();
-            return null;
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('http://localhost:8080/session/session-info',{
+        method : 'GET',
+        credentials: 'include'
+    })
+    .then(response => response.json())
+    .then(data =>{
+        const name = data.name;
+        if(name){
+            document.getElementById('userSpan').innerText = name;
+        }else{
+            console.log('Nome de usuário não encontrado')
         }
+    })
+    .catch(error =>{
+        console.error('Erro ao buscar as informações da sessão', error)
+    });
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const sessionData = getCookie('sessionCookie');
-            let userInfo = {};
-
-            if (sessionData) {
-                userInfo = JSON.parse(sessionData);
-            }
-
-            if (userInfo.username) {
-                document.getElementById('userSpan').innerText = userInfo.username;
-            }
         });

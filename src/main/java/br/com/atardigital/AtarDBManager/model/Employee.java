@@ -46,6 +46,10 @@ public class Employee {
         return clients;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void setClients(List<Client> clients) {
         this.clients = clients;
     }
