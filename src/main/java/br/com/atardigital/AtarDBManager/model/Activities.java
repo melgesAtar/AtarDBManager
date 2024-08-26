@@ -13,19 +13,14 @@ public class Activities {
     @Column(name = "funcionario_id")
     private Integer employeeID;
 
-    @ManyToOne
-    @JoinColumn(name = "cliente_id", referencedColumnName = "cliente_id")
-    private Client client;
+    @Column(name = "cliente_id")
+    private Integer clientID;
 
     @Column(name = "tipo_de_acao", length = 60)
     private String nameActivity;
 
     @Column(name = "quantidade")
     private Integer quantity;
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     @Column(name = "data")
     private LocalDate date;
@@ -37,11 +32,10 @@ public class Activities {
     public Integer getEmployeeID() {
         return employeeID;
     }
-    public Client getClient() {
-        return client;
+
+    public Integer getClientID() {
+        return clientID;
     }
-
-
 
     public String getNameActivity() {
         return nameActivity;
@@ -59,9 +53,10 @@ public class Activities {
         this.employeeID = employeeID;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setClientID(Integer clientID) {
+        this.clientID = clientID;
     }
+
     public void setNameActivity(String nameActivity) {
         this.nameActivity = nameActivity;
     }
