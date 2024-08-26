@@ -1,0 +1,20 @@
+#header-left-activities{
+    width:450px;
+}
+
+.table-activities{
+    padding: 30px;
+}
+
+th{
+    text-align: left;
+
+}
+
+tr{
+    border-bottom: 1px solid #D5D5D5;
+}
+
+.table-activity{
+    width: 100%;
+}

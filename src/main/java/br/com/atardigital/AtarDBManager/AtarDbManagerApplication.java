@@ -8,6 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages = {"br.com.atardigital.AtarDBManager.controller"})
 @ComponentScan(basePackages = {"br.com.atardigital.AtarDBManager.DAO"})
 @ComponentScan(basePackages = {"br.com.atardigital.AtarDBManager.model"})
+@ComponentScan(basePackages = {"br.com.atardigital.AtarDBManager.service"})
 
 public class AtarDbManagerApplication {
 

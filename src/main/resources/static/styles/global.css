@@ -11,6 +11,7 @@
   --c5:  #142f30;
 }
 
+
 /* Box sizing rules */
 *,
 *::before,
@@ -64,6 +65,12 @@ a:not([class]) {
   color: currentColor;
 }
 
+
+a{
+    text-decoration: none;
+    color: currentColor;
+}
+
 /* Make images easier to work with */
 img,
 picture {
@@ -95,4 +102,28 @@ textarea:not([rows]) {
 
 .description__text{
   font-family: "Merriweather";
+}
+
+.button-home ,.button-logout{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-home:hover {
+    transition: 500ms;
+    color: var(--c4);
+    cursor: pointer;
+}
+
+.button-logout:hover {
+    transition: 500ms;
+    color: var(--c4);
+    cursor: pointer;
+}
+
+.header-right-tables-pages{
+    gap: 50px;
+    justify-content: end;
 }

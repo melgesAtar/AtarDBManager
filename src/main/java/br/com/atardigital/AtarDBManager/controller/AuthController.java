@@ -20,7 +20,9 @@ public class AuthController {
     @PostMapping("/auth")
     public String authenticUser(@RequestParam("email") String email, @RequestParam("password") String password, HttpSession session) {
 
+        System.out.println("Email submitted: " + email);
         Optional<Employee> employeeOpt = dao.findByEmail(email);
+        System.out.println("Senha submitted: " + password);
 
         if (employeeOpt.isPresent()) {
             Employee employee = employeeOpt.get();
