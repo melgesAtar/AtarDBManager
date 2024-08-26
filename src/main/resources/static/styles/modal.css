@@ -1,0 +1,67 @@
+.modal {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  line-height: 1.4;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  transition: 0.2s background;
+  z-index: 3;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal__container {
+  background: var(--c2); /* substitua pela cor que desejar */
+  border-radius: 20px;
+  color: var(--c1); /* substitua pela cor que desejar */
+  height: 80vh;
+  max-width: 800px;
+  padding: 40px 20px 40px 40px;
+  position: relative;
+  width: 88%;
+}
+
+.modal__button {
+  background: var(--neutral-max); /* substitua pela cor que desejar */
+  border: 2px solid var(--primary-color); /* substitua pela cor que desejar */
+  border-radius: 50px;
+  height: 50px;
+  padding: 12px;
+  position: absolute;
+  right: -20px;
+  top: -20px;
+  width: 50px;
+}
+
+.modal__content {
+  overflow-y: auto;
+  padding-right: 30px;
+  max-height: 100%;
+}
+
+.modal__content h2 {
+  margin-bottom: 30px;
+}
+
+.modal__content h3 {
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+.modal__content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal__content::-webkit-scrollbar-thumb {
+  background-color: var(--secondary-color); /* substitua pela cor que desejar */
+}
+
+.modal__content::-webkit-scrollbar-track {
+  background-color: var(--neutral-max); /* substitua pela cor que desejar */
+}

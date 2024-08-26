@@ -12,6 +12,14 @@
 }
 
 
+.mb30{
+    margin-bottom: 30px;
+}
+
+.mt30{
+    margin-top: 30px;
+}
+
 /* Box sizing rules */
 *,
 *::before,
@@ -109,21 +117,43 @@ textarea:not([rows]) {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+
 }
 
-.button-home:hover {
+.button-home:hover, .button-logout:hover {
     transition: 500ms;
     color: var(--c4);
     cursor: pointer;
 }
 
-.button-logout:hover {
-    transition: 500ms;
-    color: var(--c4);
-    cursor: pointer;
-}
 
 .header-right-tables-pages{
     gap: 50px;
     justify-content: end;
+}
+
+.edit-button, .delete-button, .addRecordBtn{
+  margin-left: 10px;
+  display: inline-block;
+  padding: 15px 25px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: var(--c5);
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  transition: 500ms;
+}
+
+.edit-button:hover, .delete-button:hover, .addRecordBtn:hover {
+    background-color: var(--c4)
+    }
+
+.edit-button:active, .delete-button:active, .addRecordBtn:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }

@@ -41,8 +41,6 @@ public class Activities {
         return client;
     }
 
-
-
     public String getNameActivity() {
         return nameActivity;
     }
