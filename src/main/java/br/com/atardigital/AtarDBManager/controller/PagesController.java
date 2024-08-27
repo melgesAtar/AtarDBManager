@@ -20,4 +20,9 @@ public class PagesController {
     public String showTablesActivityPage() {
         return "editTableActivities";
     }
+
+    @GetMapping("edit-table/facebook_accounts")
+    public String showTableFacebookAccounts(){
+        return "editTableFacebookAccounts";
+    }
 }

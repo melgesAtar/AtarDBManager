@@ -132,7 +132,7 @@ textarea:not([rows]) {
     justify-content: end;
 }
 
-.edit-button, .delete-button, .addRecordBtn{
+.edit-button, .delete-button, .addRecordBtn,.modal .save-btn{
   margin-left: 10px;
   display: inline-block;
   padding: 15px 25px;
@@ -148,12 +148,12 @@ textarea:not([rows]) {
   transition: 500ms;
 }
 
-.edit-button:hover, .delete-button:hover, .addRecordBtn:hover {
+.edit-button:hover, .delete-button:hover, .addRecordBtn:hover,.modal .save-btn:hover{
     background-color: var(--c4)
     }
 
-.edit-button:active, .delete-button:active, .addRecordBtn:active {
-  background-color: #3e8e41;
+.edit-button:active, .delete-button:active, .addRecordBtn:active,.modal .save-btn:active{
+  background-color: var(--c4);
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }

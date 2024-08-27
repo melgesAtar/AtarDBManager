@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Atividades</title>
+    <script defer src="/scripts/buttonLogout.js"></script>
+    <script defer src="/scripts/modal.js"></script>
+    <script defer src="/scripts/facebookAccounts.js"></script>
+
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/modal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+</head>
+<body>
+<header class="header">
+    <div id="header-left-activities" class="header-left">
+        <img src="/assets/logo-atar.svg" alt="Logo Atar Digital">
+        <h1 class="title__text">Gerenciar Minhas Contas do Facebook</h1>
+    </div>
+
+    <div class="header-right header-right-tables-pages">
+        <a href="/tables" class="button-home">
+            <i class="fa-solid fa-house title__text"></i>
+            <h1 class="title__text">Home</h1>
+        </a>
+        <div class="button-logout">
+            <i class="fas fa-sign-out-alt title__text"></i>
+            <h1 class="title__text">Sair</h1>
+        </div>
+    </div>
+
+
+</header>
+<section class="table-activities">
+    <button class="addRecordBtn description__text mb30 mt30" id="addRecordBtn">Adicionar Nova Conta</button>
+    <table class="table-activity" id="dataTable">
+        <thead>
+        <tr>
+            <th class="title__text">ID</th>
+            <th class="title__text">Username</th>
+            <th class="title__text">Senha</th>
+            <th class="title__text">Cliente</th>
+            <th class="title__text">Status</th>
+            <th class="title__text">Cidade</th>
+            <th class="title__text">Bairro</th>
+            <th class="title__text">Nicho</th>
+            <th class="title__text">Endereço</th>
+            <th class="title__text">UF</th>
+        </tr>
+        </thead>
+        <tbody class="description__text">
+
+        </tbody>
+    </table>
+
+
+    <div id="formContainer" class="modal">
+        <div class="modal__container">
+            <button class="modal__button" id="closeModalBtn"><i class="fa-solid fa-x"></i></button>
+            <h2 class="title__text" id="formTitle">Adicionar Conta</h2>
+            <form id="recordForm">
+                <input  type="hidden" id="recordId">
+
+
+                <label class="description__text" for="clientSelect">Cliente:</label>
+                <select class="description__text" id="clientSelect" required></select>
+
+                <label class="description__text" for="activitySelect">Nome Atividade:</label>
+                <select class="description__text" id="activitySelect" required>
+
+                </select>
+
+                <label class="description__text" for="quantity">Quantidade:</label>
+                <input class="description__text" type="number" id="quantity" name="quantity" required>
+
+                <label class="description__text" for="date">Data:</label>
+                <input class="description__text" type="date" id="date" name="date" required>
+
+                <button class="save-btn description__text" type="submit">Salvar</button>
+            </form>
+        </div>
+    </div>
+</section>
+</body>
+</html>

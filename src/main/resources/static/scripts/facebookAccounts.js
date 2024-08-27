@@ -17,9 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function loadTableData() {
         if (!employeeId) return;
 
-        fetch(`/api/facebookAccounts/employee/{employeeId}`)
+        fetch(`/api/facebookAccounts/employee/${employeeId}`)
             .then(response => response.json())
             .then(data => {
+                console.log(record);
                 dataTable.innerHTML = '';
                 data.forEach(record => {
                     const row = dataTable.insertRow();
@@ -31,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     row.insertCell(3).innerText = record.nameActivity;
                     row.insertCell(4).innerText = record.quantity;
                     row.insertCell(5).innerText = record.date;
+
 
                     const actionsCell = row.insertCell(6);
                     const editButton = document.createElement('button');

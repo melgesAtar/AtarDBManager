@@ -54,10 +54,11 @@
 
 <div id="formContainer" class="modal">
     <div class="modal__container">
-        <button class="modal__button" id="closeModalBtn">X</button>
+        <button class="modal__button" id="closeModalBtn"><i class="fa-solid fa-x"></i></button>
     <h2 class="title__text" id="formTitle">Adicionar Atividade</h2>
     <form id="recordForm">
         <input  type="hidden" id="recordId">
+
 
         <label class="description__text" for="clientSelect">Cliente:</label>
         <select class="description__text" id="clientSelect" required></select>
@@ -73,7 +74,7 @@
         <label class="description__text" for="date">Data:</label>
         <input class="description__text" type="date" id="date" name="date" required>
 
-        <button class="description__text" type="submit">Salvar</button>
+        <button class="save-btn description__text" type="submit">Salvar</button>
     </form>
     </div>
 </div>
