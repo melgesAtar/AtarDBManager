@@ -20,21 +20,28 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch(`/api/facebookAccounts/employee/${employeeId}`)
             .then(response => response.json())
             .then(data => {
-                console.log(record);
+                console.log(data);
                 dataTable.innerHTML = '';
                 data.forEach(record => {
                     const row = dataTable.insertRow();
+
                     row.insertCell(0).innerText = record.id;
-                    const clientIdCell = row.insertCell(1);
-                    clientIdCell.innerText = record.clientID;
-                    clientIdCell.style.display = 'none';
-                    row.insertCell(2).innerText = record.clientName;
-                    row.insertCell(3).innerText = record.nameActivity;
-                    row.insertCell(4).innerText = record.quantity;
-                    row.insertCell(5).innerText = record.date;
+                    row.insertCell(1).innerText = record.username;
+                    row.insertCell(2).innerText = record.password;
+                    row.insertCell(3).innerText = record.client.name;
+                    row.insertCell(4).innerText = record.active;
+                    row.insertCell(5).innerText = record.city;
+                    row.insertCell(6).innerText = record.neighborhood;
+                    if (record.niche && record.niche.name) {
+                        row.insertCell(7).innerText = record.niche.name;
+                    } else {
+                        row.insertCell(7).innerText = "Não Atribuido";
+                    }
+                    row.insertCell(8).innerText = record.address;
+                    row.insertCell(9).innerText = record.uf;
 
 
-                    const actionsCell = row.insertCell(6);
+                    const actionsCell = row.insertCell(10);
                     const editButton = document.createElement('button');
                     editButton.innerText = 'Editar';
                     editButton.classList.add('edit-button');
@@ -55,23 +62,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     actionsCell.appendChild(deleteButton);
                 });
             })
-            .catch(error => console.error('Erro ao carregar as atividades:', error));
+            .catch(error => console.error('Erro ao carregar as contas do facebook:', error));
     }
 
     function openForm(record) {
         formContainer.classList.add('active');
-        formTitle.innerText = record ? 'Editar Atividade' : 'Adicionar Atividade';
+        formTitle.innerText = record ? 'Editar Contas Facebook' : 'Adicionar Contas Facebook';
 
         loadClients(record ? record.clientID : null);
         loadActivities(record ? record.nameActivity : null);
 
         if (record) {
+
             document.getElementById('recordId').value = record.id;
             document.getElementById('clientSelect').value = record.clientID;
             document.getElementById('activitySelect').value = record.nameActivity;
             document.getElementById('quantity').value = record.quantity;
             document.getElementById('date').value = record.date;
-            editingRecordId = record.id; // Certifique-se de que o ID está sendo atribuído corretamente
+            editingRecordId = record.id;
+
         } else {
             recordForm.reset();
             editingRecordId = null; // Limpa o ID ao adicionar um novo registro

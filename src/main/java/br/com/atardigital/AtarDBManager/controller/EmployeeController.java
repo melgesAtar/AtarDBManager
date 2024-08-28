@@ -1,10 +1,10 @@
 package br.com.atardigital.AtarDBManager.controller;
 
-import br.com.atardigital.AtarDBManager.DAO.IActivities;
+
 import br.com.atardigital.AtarDBManager.DAO.IEmployee;
-import br.com.atardigital.AtarDBManager.model.Activities;
+
 import br.com.atardigital.AtarDBManager.model.Client;
-import br.com.atardigital.AtarDBManager.model.dto.ActivitiesDTO;
+
 import br.com.atardigital.AtarDBManager.service.EmployeeService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;

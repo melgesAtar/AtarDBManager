@@ -31,11 +31,15 @@ public class FacebookAccounts {
     @Column(name = "bairro")
     private String neighborhood;
 
-    @Column(name = "nicho")
-    private String niche;
+
+    @ManyToOne
+    @JoinColumn(name = "nicho",  referencedColumnName = "idnichos")
+    private Niche niche;
 
     @Column(name = "endereco")
     private String address;
+    @Column(name = "uf")
+    private String uf;
 
     public Integer getId() {
         return id;
@@ -93,11 +97,11 @@ public class FacebookAccounts {
         this.neighborhood = neighborhood;
     }
 
-    public String getNiche() {
+    public Niche getNiche() {
         return niche;
     }
 
-    public void setNiche(String niche) {
+    public void setNiche(Niche niche){
         this.niche = niche;
     }
 
@@ -117,6 +121,5 @@ public class FacebookAccounts {
         this.uf = uf;
     }
 
-    @Column(name = "uf")
-    private String uf;
+
 }

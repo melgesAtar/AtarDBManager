@@ -7,7 +7,6 @@ import br.com.atardigital.AtarDBManager.model.Employee;
 import br.com.atardigital.AtarDBManager.model.FacebookAccounts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,7 +34,6 @@ public class FacebookAccountsController {
         if(employeeOpt.isPresent()){
             Employee employee = employeeOpt.get();
             List<Client> clients = employee.getClients();
-
             List<FacebookAccounts> facebookAccounts = IFacebookAccounts.findByClientIn(clients);
 
             return ResponseEntity.ok(facebookAccounts);

@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function loadTableData() {
         if (!employeeId) return;
 
-        fetch(`/api/facebookAccounts/employee/{employeeId}`)
+        fetch(`/api/activities/employee/${employeeId}`)
             .then(response => response.json())
             .then(data => {
                 dataTable.innerHTML = '';
