@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch(`/api/facebookAccounts/employee/${employeeId}`)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
+
                 dataTable.innerHTML = '';
                 data.forEach(record => {
                     const row = dataTable.insertRow();
@@ -28,7 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     row.insertCell(0).innerText = record.id;
                     row.insertCell(1).innerText = record.username;
                     row.insertCell(2).innerText = record.password;
-                    row.insertCell(3).innerText = record.client.name;
+
+                    // Cria a célula para o cliente
+                    const clientCell = row.insertCell(3);
+                    clientCell.innerText = record.client.name;
+                    clientCell.setAttribute('data-client-id', record.client.id); // Adiciona o atributo personalizado
+
                     row.insertCell(4).innerText = record.active;
                     row.insertCell(5).innerText = record.city;
                     row.insertCell(6).innerText = record.neighborhood;
@@ -39,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     row.insertCell(8).innerText = record.address;
                     row.insertCell(9).innerText = record.uf;
-
 
                     const actionsCell = row.insertCell(10);
                     const editButton = document.createElement('button');
@@ -61,31 +65,74 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                     actionsCell.appendChild(deleteButton);
                 });
+
             })
             .catch(error => console.error('Erro ao carregar as contas do facebook:', error));
     }
 
     function openForm(record) {
+
         formContainer.classList.add('active');
+        recordForm.reset();
         formTitle.innerText = record ? 'Editar Contas Facebook' : 'Adicionar Contas Facebook';
 
-        loadClients(record ? record.clientID : null);
-        loadActivities(record ? record.nameActivity : null);
+
 
         if (record) {
 
             document.getElementById('recordId').value = record.id;
-            document.getElementById('clientSelect').value = record.clientID;
-            document.getElementById('activitySelect').value = record.nameActivity;
-            document.getElementById('quantity').value = record.quantity;
-            document.getElementById('date').value = record.date;
+            document.getElementById('username').value = record.username;
+            document.getElementById('password').value = record.password;
+            document.getElementById('status').value = record.status;
+            document.getElementById('address').value = record.address;
+            document.getElementById('city').value = record.city;
+            document.getElementById('neighborhood').value = record.neighborhood;
+            document.getElementById('uf').value = record.uf;
             editingRecordId = record.id;
 
         } else {
             recordForm.reset();
-            editingRecordId = null; // Limpa o ID ao adicionar um novo registro
+            editingRecordId = null;
         }
+
+        loadClients(record ? record.client.id : null);
+        loadStatus(record ? record.active : null);
+
+         if (record && record.niche && record.niche.id !== undefined) {
+                const selectedNiche = record.niche.id;
+                loadNiches(selectedNiche);
+            } else {
+                console.error('Registro ou cliente não está definido ou não possui um id válido.');
+                loadNiches(null);
+            }
+
+
+
     }
+
+   function loadStatus(statusSelected = null) {
+       const statusSelect = document.getElementById('status');
+       statusSelect.innerHTML = '';
+
+       const status = [
+           { id: true, name: 'Ativo' },
+           { id: false, name: 'Inativo' }
+       ];
+
+       status.forEach(status => {
+           const option = document.createElement('option');
+           option.value = status.id;
+           option.text = status.name;
+           if (status.id === statusSelected) {
+               option.selected = true;
+           }
+           statusSelect.add(option);
+
+       });
+   }
+
+
+
 
     function loadClients(selectedClientId = null) {
         const clientSelect = document.getElementById('clientSelect');
@@ -107,36 +154,61 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => console.error('Erro ao carregar os clientes:', error));
     }
 
-    function loadActivities(selectedActivity = null) {
-        const activitySelect = document.getElementById('activitySelect');
-        activitySelect.innerHTML = '';
+    function loadNiches(selectedNiche = null) {
+        const nicheSelect = document.getElementById('niche');
+        nicheSelect.innerHTML = '';
 
-        const activities = ['Curtidas Instagram', 'Curtidas Facebook', 'Comentários Instagram', 'Comentários Facebook', 'Compartilhamentos Instagram', 'Compartilhamentos Facebook'];
+        fetch('http://localhost:8080/api/nicheController/niches')
+            .then(response => response.json())
+            .then(niches => {
 
-        activities.forEach(activity => {
-            const option = document.createElement('option');
-            option.value = activity;
-            option.text = activity;
-            if (activity === selectedActivity) {
-                option.selected = true;
-            }
-            activitySelect.add(option);
-        });
+                if (Array.isArray(niches)) {
+                    niches.forEach(niche => {
+                        const option = document.createElement('option');
+                        option.value = niche.id;
+                        option.text = niche.name;
+
+
+                        if (selectedNiche !== null && niche.id === selectedNiche) {
+                            option.selected = true;
+                        }
+
+                        nicheSelect.add(option);
+                    });
+
+                    // Selecionar o primeiro item se selectedNiche for nulo e o select não estiver vazio
+                    if (selectedNiche === null && nicheSelect.options.length > 0) {
+                        nicheSelect.options[0].selected = true;
+                    }
+                } else {
+                    console.error('Erro: O retorno da API não é um array válido.');
+                }
+            })
+            .catch(error => console.error('Erro ao carregar os nichos:', error));
     }
+
 
     recordForm.addEventListener('submit', function (event) {
         event.preventDefault();
 
+        const formData = new FormData(recordForm);
+
         const recordData = {
-            employeeID: employeeId,
-            client: { id: document.getElementById('clientSelect').value },
-            nameActivity: document.getElementById('activitySelect').value,
-            quantity: document.getElementById('quantity').value,
-            date: document.getElementById('date').value
+            username :  event.target.username.value,
+            password: event.target.password.value,
+            client : event.target.client.value,
+            status : event.target.status.value,
+            address: event.target.address.value,
+            neighborhood: event.target.neighborhood.value,
+            city: event.target.city.value,
+            niche: event.target.niche.value,
+            uf: event.target.uf.value,
         };
 
+
+
         if (editingRecordId) {
-            fetch(`/api/activities/edit/${editingRecordId}`, {
+            fetch(`/api/facebookAccounts/edit/${editingRecordId}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(recordData)

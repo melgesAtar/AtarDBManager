@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Atividades</title>
+    <title>Editar Contas Facebook</title>
     <script defer src="/scripts/buttonLogout.js"></script>
     <script defer src="/scripts/modal.js"></script>
     <script defer src="/scripts/facebookAccounts.js"></script>
+    <script defer src="/scripts/viaCep.js"></script>
 
     <link rel="stylesheet" href="/styles/style.css">
     <link rel="stylesheet" href="/styles/modal.css">
@@ -64,20 +65,43 @@
             <form id="recordForm">
                 <input  type="hidden" id="recordId">
 
+                <label class="description__text" for="username">Username:</label>
+                <input class="description__text" type="text" id="username" name="username" required>
+
+                <label class="description__text" for="password">Senha:</label>
+                <input class="description__text" type="text" id="password" name="password" required>
 
                 <label class="description__text" for="clientSelect">Cliente:</label>
-                <select class="description__text" id="clientSelect" required></select>
+                <select class="description__text" id="clientSelect" name="client" required></select>
 
-                <label class="description__text" for="activitySelect">Nome Atividade:</label>
-                <select class="description__text" id="activitySelect" required>
-
+                <label class="description__text" for="status">Status:</label>
+                <select class="description__text" id="status" name="status" required >
+                    <option value="1">Ativo</option>
+                    <option value="0">Inativo</option>
                 </select>
 
-                <label class="description__text" for="quantity">Quantidade:</label>
-                <input class="description__text" type="number" id="quantity" name="quantity" required>
+                <div>
+                    <label class="description__text" for="buscaCep">Buscar CEP:</label>
+                    <input class="description__text" id="buscaCep">
+                    <button class="description__text" onclick="searchCEP();" type="button">Buscar</button>
 
-                <label class="description__text" for="date">Data:</label>
-                <input class="description__text" type="date" id="date" name="date" required>
+                </div>
+
+                <label class="description__text" for="address">Endereço:</label>
+                <input class="description__text" type="text" id="address" name="address" disabled>
+
+                <label class="description__text" for="neighborhood">Bairro:</label>
+                <input class="description__text" type="text" id="neighborhood" name="neighborhood" disabled>
+
+                <label class="description__text" for="city">Cidade:</label>
+                <input class="description__text" type="text" id="city" name="city" disabled>
+
+
+                <label class="description__text" for="niche">Nicho:</label>
+                <select class="description__text" id="niche"  name="niche" required></select>
+
+                <label class="description__text" for="uf">UF:</label>
+                <input class="description__text" type="text" id="uf" name="uf" disabled>
 
                 <button class="save-btn description__text" type="submit">Salvar</button>
             </form>
