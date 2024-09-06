@@ -2,13 +2,15 @@ package br.com.atardigital.AtarDBManager.model;
 
 import jakarta.persistence.*;
 
+import java.util.Optional;
+
 
 @Entity
 @Table(name="contas_facebook")
 public class FacebookAccounts {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "facebook_id")
     private Integer id;
 
@@ -120,6 +122,5 @@ public class FacebookAccounts {
     public void setUf(String uf) {
         this.uf = uf;
     }
-
 
 }

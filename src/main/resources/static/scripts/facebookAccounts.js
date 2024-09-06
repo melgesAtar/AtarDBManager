@@ -29,12 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     row.insertCell(1).innerText = record.username;
                     row.insertCell(2).innerText = record.password;
 
-                    // Cria a célula para o cliente
+
                     const clientCell = row.insertCell(3);
                     clientCell.innerText = record.client.name;
                     clientCell.setAttribute('data-client-id', record.client.id); // Adiciona o atributo personalizado
 
-                    row.insertCell(4).innerText = record.active;
+                    row.insertCell(4).innerText = record.active ? "Ativa" : "Desativada";
                     row.insertCell(5).innerText = record.city;
                     row.insertCell(6).innerText = record.neighborhood;
                     if (record.niche && record.niche.name) {
@@ -193,19 +193,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const formData = new FormData(recordForm);
 
+        const client = {
+            id : +event.target.client.value,
+            name : event.target.client[event.target.client.selectedIndex].innerText,
+        }
+
+        const niche = {
+            id: +event.target.niche.value,
+            name: event.target.niche[event.target.niche.selectedIndex].innerText,
+        }
+
         const recordData = {
             username :  event.target.username.value,
             password: event.target.password.value,
-            client : event.target.client.value,
-            status : event.target.status.value,
+            client : client,
+            active : document.getElementById("status").value,
             address: event.target.address.value,
             neighborhood: event.target.neighborhood.value,
             city: event.target.city.value,
-            niche: event.target.niche.value,
+            niche: niche,
             uf: event.target.uf.value,
         };
 
-
+        console.log(recordData);
 
         if (editingRecordId) {
             fetch(`/api/facebookAccounts/edit/${editingRecordId}`, {
@@ -218,7 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 loadTableData();
             });
         } else {
-            fetch('/api/activities/add', {
+            fetch('/api/facebookAccounts/add', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(recordData)

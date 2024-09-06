@@ -105,7 +105,7 @@ textarea:not([rows]) {
 
 .title__text{
     font-family: "Raleway";
-    font-size: clamp(18px, 1.3vw, 35px);
+    font-size: clamp(25px, 1.3vw, 35px);
 }
 
 .description__text{
@@ -157,3 +157,4 @@ textarea:not([rows]) {
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
+

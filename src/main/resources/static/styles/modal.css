@@ -10,6 +10,7 @@
   top: 0;
   transition: 0.2s background;
   z-index: 3;
+  left:0;
 }
 
 .modal.active {
@@ -23,6 +24,7 @@
   max-width: 800px;
   padding: 40px;
   position: relative;
+  width: 80%;
 }
 
 .modal__button {
@@ -74,4 +76,3 @@
     margin-left: 0px;
     box-shadow: none;
 }
-

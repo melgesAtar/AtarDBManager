@@ -1,8 +1,8 @@
 package br.com.atardigital.AtarDBManager.controller;
 
+import br.com.atardigital.AtarDBManager.DAO.IClient;
 import br.com.atardigital.AtarDBManager.DAO.IEmployee;
 import br.com.atardigital.AtarDBManager.DAO.IFacebookAccounts;
-import br.com.atardigital.AtarDBManager.model.Activities;
 import br.com.atardigital.AtarDBManager.model.Client;
 import br.com.atardigital.AtarDBManager.model.Employee;
 import br.com.atardigital.AtarDBManager.model.FacebookAccounts;
@@ -21,9 +21,13 @@ public class FacebookAccountsController {
 
     @Autowired
     private IFacebookAccounts IFacebookAccounts;
-
     @Autowired
     private IEmployee IEmployee;
+
+    @Autowired
+    private IClient clientRepository;
+
+
 
     @GetMapping("/employee/{employeeId}")
     public ResponseEntity<List<FacebookAccounts>> getFacebookAccountsByEmployee(@PathVariable Integer employeeId){
@@ -42,23 +46,38 @@ public class FacebookAccountsController {
     }
 
     @PutMapping("edit/{id}")
-    public FacebookAccounts editFacebookAccount(@PathVariable Integer id, @RequestBody FacebookAccounts updateFacebookAccount){
+    public ResponseEntity<FacebookAccounts> editFacebookAccount(@PathVariable Integer id, @RequestBody FacebookAccounts updateFacebookAccount){
         return IFacebookAccounts.findById(id).map(FacebookAccount ->{
 
-                    FacebookAccount.setId(updateFacebookAccount.getId());
+
                     FacebookAccount.setUsername(updateFacebookAccount.getUsername());
                     FacebookAccount.setPassword(updateFacebookAccount.getPassword());
-                    FacebookAccount.setClient(updateFacebookAccount.getClient());
+                    Integer clientId = updateFacebookAccount.getClient().getId();
+
+                    Client client = clientRepository.findById(clientId)
+                            .orElseThrow(() -> new ResourceNotFoundException("Cliente não encontrado com o ID: " + clientId));
+                    updateFacebookAccount.setClient(client);
+
                     FacebookAccount.setActive(updateFacebookAccount.isActive());
                     FacebookAccount.setAddress(updateFacebookAccount.getAddress());
-                    FacebookAccount.setAddress(updateFacebookAccount.getCity());
+                    FacebookAccount.setCity(updateFacebookAccount.getCity());
                     FacebookAccount.setNeighborhood(updateFacebookAccount.getNeighborhood());
                     FacebookAccount.setUf(updateFacebookAccount.getUf());
 
-                    return IFacebookAccounts.save(FacebookAccount);
+                    FacebookAccounts updatedFacebookAccount = IFacebookAccounts.save(FacebookAccount);
+                     return ResponseEntity.ok(updatedFacebookAccount);
                 })
                 .orElseThrow(() -> new ResourceNotFoundException("Conta não encontrada, com o ID : " + id ));
     }
 
+    @PostMapping("/add")
+    public FacebookAccounts addFacebookAccount(@RequestBody FacebookAccounts facebookAccountUpdate){
+        Client client = clientRepository.findById(facebookAccountUpdate.getClient().getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Client not found with ID: " + facebookAccountUpdate.getClient().getId()));
+        facebookAccountUpdate.setClient(client);
+
+
+        return IFacebookAccounts.save(facebookAccountUpdate);
+    }
 
 }

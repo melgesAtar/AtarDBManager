@@ -60,6 +60,7 @@ public class ActivitiesController {
 
             Client client = clientRepository.findById(updateActivity.getClient().getId())
                     .orElseThrow(() -> new ResourceNotFoundException("Client not found with ID: " + updateActivity.getClient().getId()));
+
             activity.setClient(client);
             activity.setNameActivity(updateActivity.getNameActivity());
             activity.setQuantity(updateActivity.getQuantity());
