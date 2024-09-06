@@ -80,4 +80,9 @@ public class FacebookAccountsController {
         return IFacebookAccounts.save(facebookAccountUpdate);
     }
 
+
+    @DeleteMapping("delete/{id}")
+    public void deleteFacebookAccount(@PathVariable Integer id){
+        IFacebookAccounts.deleteById(id);
+    }
 }

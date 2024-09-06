@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function deleteRecord(id) {
-        fetch(`/api/activities/delete/${id}`, {
+        fetch(`/api/facebookAccounts/delete/${id}`, {
             method: 'DELETE'
         })
         .then(() => {
